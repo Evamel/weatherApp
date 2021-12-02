@@ -4,8 +4,9 @@ window.addEventListener('load', () => {
     let temperatureDescription = document.querySelector('.temp-description');
     let temperatureDegree = document.querySelector('.temp-degree');
     let locationTimezone = document.querySelector('.location-timezone');
-    // let icon = document.querySelector('.icon');
-
+    let degreeSection = document.querySelector('degree-section');
+    const temperatureSpan = document.querySelector('.temperature span');
+    let humidity = document.querySelector('.humidity');
     let image = document.getElementById('img');
 
 
@@ -29,13 +30,31 @@ window.addEventListener('load', () => {
             temperatureDegree.textContent = temp_c;
             temperatureDescription.textContent = condition.text;
             locationTimezone.textContent = data.location.name;
-            // icon.textContent = condition.icon;
+            
 
             //Getting the icon info and using it to display the image
             const toSubstr = data.current.condition.icon;
             const substr = toSubstr.substr(20);
-            let iconSrc = ".";
             image.src = `${substr}`;
+
+            humidity.textContent = data.current.humidity;
+
+            temperatureDegree.addEventListener('click', () => {
+                if(temperatureSpan.textContent === "°F"){
+                    temperatureSpan.textContent = "°C";
+                }else{
+                    temperatureSpan.textContent = "°F";
+                }
+            });
+
+            temperatureDegree.addEventListener('click', () => {
+                if(temperatureSpan.textContent === "°F"){
+                    temperatureDegree.textContent = data.current.temp_f;
+                }else{
+                    temperatureDegree.textContent = data.current.temp_c;
+                }
+            });
+
         })
 
         })
