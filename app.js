@@ -7,6 +7,7 @@ window.addEventListener('load', () => {
     let degreeSection = document.querySelector('degree-section');
     const temperatureSpan = document.querySelector('.temperature span');
     let humidity = document.querySelector('.humidity');
+    let pressure = document.querySelector('.pressure');
     let image = document.getElementById('img');
 
 
@@ -38,6 +39,7 @@ window.addEventListener('load', () => {
             image.src = `${substr}`;
 
             humidity.textContent = data.current.humidity;
+            pressure.textContent = data.current.pressure_mb;
 
             temperatureDegree.addEventListener('click', () => {
                 if(temperatureSpan.textContent === "°F"){
@@ -54,7 +56,6 @@ window.addEventListener('load', () => {
                     temperatureDegree.textContent = data.current.temp_c;
                 }
             });
-
         })
 
         })
